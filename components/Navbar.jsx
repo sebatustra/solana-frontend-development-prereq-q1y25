@@ -1,4 +1,9 @@
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic';
+
+const WalletMultiButtonDynamic = dynamic(
+    async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+    { ssr: false }
+);
 
 const Navbar = () => {
     return (
@@ -9,7 +14,7 @@ const Navbar = () => {
                 </div>
             </a>
 
-            <WalletMultiButton className='!bg-turbine-green hover:!bg-black transition-all duration-200 !rounded-lg' />
+            <WalletMultiButtonDynamic className='!bg-turbine-green hover:!bg-black transition-all duration-200 !rounded-lg' />
         </nav>
     );
 };
